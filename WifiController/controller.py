@@ -2,7 +2,7 @@
 # @Author: eastpiger
 # @Date:   2017-02-16 14:38:02
 # @Last Modified by:   eastpiger
-# @Last Modified time: 2017-03-11 07:33:14
+# @Last Modified time: 2017-03-11 07:40:07
 
 from urllib import request
 import json
@@ -157,11 +157,13 @@ def clear():
 	multiThread_run(threads)
 
 def download():
-	def _download(device):
-		device.downloadLatest()
 	for i in device:
-		threads.append(threading.Thread(target = _download, args = (i,)))
-	multiThread_run(threads)
+		i.downloadLatest()
+	# def _download(device):
+	# 	device.downloadLatest()
+	# for i in device:
+	# 	threads.append(threading.Thread(target = _download, args = (i,)))
+	# multiThread_run(threads)
 
 def upload():
 	from qiniu import Auth, put_file, etag, urlsafe_base64_encode
