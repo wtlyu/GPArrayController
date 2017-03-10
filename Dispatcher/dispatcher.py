@@ -41,8 +41,8 @@ def ResHello():
 	send(bot_name,'Hello, this is DispatcherBot #0. Your order?',['capture', 'clear', 'exit'],'DispatcherBot')
 
 def ResCapture():
-	os.system(sys.path[0] + '/../GPIOController/export')
-	os.system(sys.path[0] + '/../GPIOController/capture')
+	os.system(sys.path[0] + '/GPIOController/export')
+	os.system(sys.path[0] + '/GPIOController/capture')
 	send(bot_name,'[capture] Captured, downloading',[],'DispatcherBot')
 	download()
 	send(bot_name,'[capture] Downloaded, uploading',[],'DispatcherBot')
@@ -50,12 +50,11 @@ def ResCapture():
 	send(bot_name,'[capture] uploaded',[],'DispatcherBot')
 
 def ResClear():
-	os.system(sys.path[0] + '/../GPIOController/export')
 	clear()
 	send(bot_name,'[clear] Done',[],'DispatcherBot')
 
 def ResExit():
-	os.system(sys.path[0] + '/../GPIOController/unexport')
+	os.system(sys.path[0] + '/GPIOController/unexport')
 	send(bot_name,'Bye',[],'DispatcherBot')
 	exit()
 
