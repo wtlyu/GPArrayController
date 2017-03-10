@@ -2,7 +2,7 @@
 # @Author: eastpiger
 # @Date:   2017-02-16 14:38:02
 # @Last Modified by:   eastpiger
-# @Last Modified time: 2017-03-11 04:26:13
+# @Last Modified time: 2017-03-11 07:33:14
 
 from urllib import request
 import json
@@ -133,16 +133,18 @@ def multiThread_run(threads):
 	for thread in threads:
 		thread.join()
 
+	threads = []
+
 
 device = [
-	Device(id = 1, ip = '192.168.1.201', password = 'vrlab123'),
-	Device(id = 2, ip = '192.168.1.202', password = 'vrlab123'),
-	Device(id = 3, ip = '192.168.1.203', password = 'vrlab123'),
-	Device(id = 4, ip = '192.168.1.204', password = 'vrlab123'),
-	Device(id = 5, ip = '192.168.1.205', password = 'vrlab123'),
-	Device(id = 6, ip = '192.168.1.206', password = 'vrlab123'),
-	Device(id = 7, ip = '192.168.1.207', password = 'vrlab123'),
-	Device(id = 8, ip = '192.168.1.208', password = 'vrlab123'),
+	Device(id = 1, ip = '192.168.0.201', password = 'vrlab123'),
+	Device(id = 2, ip = '192.168.0.202', password = 'vrlab123'),
+	Device(id = 3, ip = '192.168.0.203', password = 'vrlab123'),
+	Device(id = 4, ip = '192.168.0.204', password = 'vrlab123'),
+	Device(id = 5, ip = '192.168.0.205', password = 'vrlab123'),
+	Device(id = 6, ip = '192.168.0.206', password = 'vrlab123'),
+	Device(id = 7, ip = '192.168.0.207', password = 'vrlab123'),
+	Device(id = 8, ip = '192.168.0.208', password = 'vrlab123'),
 	]
 
 threads = []
