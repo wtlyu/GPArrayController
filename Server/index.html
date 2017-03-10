@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Nearby 邻里 - 可能是最萌的强地理关系服务平台</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+		<meta name="browsermode" content="application">
+		<meta name="x5-page-mode" content="app">
+
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./index.css">
+	</head>
+	<body>
+		<div class="hiddentitle">
+			<h1>Nearby <small>邻里</small></h1>
+			- 可能是最萌的强地理关系服务平台
+		</div>
+		<div class="container inactive">
+			<div id="nameContainer" class="row">
+				<div id="name"></div>
+				<div id="name_edit">
+					<input type="text" class="form-control" id="nameEdit" placeholder="Enter your name">
+				</div>
+				<div id="name_button">
+					<span class="glyphicon glyphicon-edit" onclick=onchangeEdit()></span>
+				</div>
+			</div>
+			<div id="messagesContainer" class="row">
+				<div id="messages" class="col-xs-12">
+
+				</div>
+			</div>
+			<div class="row control">
+				<div class="col-xs-12">
+					<form action="" id="sendForm">
+						<div class="input-group">
+							<input type="text" class="form-control" id="content" autocomplete="off" />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit">SEND</button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+ <!--    <ul id="messages"></ul>
+		<form action="">
+			<input id="m" autocomplete="off" /><button>Send</button>
+		</form>
+ -->
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="./nearby.js"></script>
+
+	</body>
+</html>

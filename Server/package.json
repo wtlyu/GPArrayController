@@ -1,0 +1,12 @@
+{
+  "name": "GPArrayControllerServer",
+  "version": "0.0.1",
+  "description": "GPArrayControllerServer",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.5.0"
+  },
+  "script" : {
+    "start" : "node index.js"
+  }
+}
