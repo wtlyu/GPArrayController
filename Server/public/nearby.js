@@ -64,7 +64,7 @@ function onClickChoice(id, choice) {
 }
 function onReceiveMsg(msg) {
 	msg.name = removeHTMLTag(msg.name);
-	msg.content = removeHTMLTag(msg.content);
+	// msg.content = removeHTMLTag(msg.content);
 	var dis = computeDistance(msg.GPS, GPS);
 	if (dis > 2) return;
 	var t = '<div class="message_box">';

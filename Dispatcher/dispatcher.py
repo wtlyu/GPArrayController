@@ -3,7 +3,7 @@
 import logging
 import time
 import sys, os
-from WifiController.controller import clear, download, upload
+from WifiController.controller import clear, download, upload, photomode
 logging.getLogger('socketIO-client').setLevel(logging.DEBUG)
 logging.captureWarnings(True)
 
@@ -41,6 +41,8 @@ def ResHello():
 	send(bot_name,'Hello, this is DispatcherBot #0. Your order?',['capture', 'clear', 'exit'],'DispatcherBot')
 
 def ResCapture():
+	photomode()
+	time.sleep(1)
 	os.system(sys.path[0] + '/GPIOController/export')
 	os.system(sys.path[0] + '/GPIOController/capture')
 	send(bot_name,'[capture] Captured, downloading',[],'DispatcherBot')
