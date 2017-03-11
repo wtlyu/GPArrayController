@@ -46,8 +46,9 @@ def ResCapture():
 	send(bot_name,'[capture] Captured, downloading',[],'DispatcherBot')
 	download()
 	send(bot_name,'[capture] Downloaded, uploading',[],'DispatcherBot')
-	upload()
+	strc = upload()
 	send(bot_name,'[capture] uploaded',[],'DispatcherBot')
+	send(bot_name,'[capture] {}'.format(strc),[],'DispatcherBot')
 
 def ResClear():
 	clear()
@@ -63,13 +64,25 @@ def handler(*args):
 	#if hit, set up alive time. do counting
 	print (args)
 	if(args[0]['content']=='hello'):
-		ResHello()
+		try:
+			ResHello()
+		except Exception as e:
+			send(bot_name,'dispatcher error',[],'DispatcherBot')
 	if(args[0]['content']=='capture'):
-		ResCapture()
+		try:
+			ResCapture()
+		except Exception as e:
+			send(bot_name,'dispatcher error',[],'DispatcherBot')
 	if(args[0]['content']=='clear'):
-		ResClear()
+		try:
+			ResClear()
+		except Exception as e:
+			send(bot_name,'dispatcher error',[],'DispatcherBot')
 	if(args[0]['content']=='exit'):
-		ResExit()
+		try:
+			ResExit()
+		except Exception as e:
+			send(bot_name,'dispatcher error',[],'DispatcherBot')
 
 def init():
 	global socketIO

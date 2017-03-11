@@ -2,7 +2,7 @@
 # @Author: eastpiger
 # @Date:   2017-02-16 14:38:02
 # @Last Modified by:   eastpiger
-# @Last Modified time: 2017-03-11 07:40:07
+# @Last Modified time: 2017-03-11 08:19:40
 
 from urllib import request
 import json
@@ -149,16 +149,36 @@ device = [
 
 threads = []
 
-def clear():
-	def _deleteall(device):
-		device.delete('/all')
+def photomode():
 	for i in device:
-		threads.append(threading.Thread(target = _deleteall, args = (i,)))
-	multiThread_run(threads)
+		try:
+			i.mode(shortcut('mode.photo'))
+		except Exception as e:
+			pass
+	# def _deleteall(device):
+	# 	device.delete('/all')
+	# for i in device:
+	# 	threads.append(threading.Thread(target = _deleteall, args = (i,)))
+	# multiThread_run(threads)
+
+def clear():
+	for i in device:
+		try:
+			i.delete('/all')
+		except Exception as e:
+			pass
+	# def _deleteall(device):
+	# 	device.delete('/all')
+	# for i in device:
+	# 	threads.append(threading.Thread(target = _deleteall, args = (i,)))
+	# multiThread_run(threads)
 
 def download():
 	for i in device:
-		i.downloadLatest()
+		try:
+			i.mode()
+		except Exception as e:
+			pass
 	# def _download(device):
 	# 	device.downloadLatest()
 	# for i in device:
@@ -166,23 +186,34 @@ def download():
 	# multiThread_run(threads)
 
 def upload():
-	from qiniu import Auth, put_file, etag, urlsafe_base64_encode
-	import qiniu.config
-	import time
-	access_key = '6GXfBrWJbYN3N2y0zuMX7rf7tmvoqWg5CFwMYMKh'
-	secret_key = 'Nk9DmZ95PRqqH59-2FH6__q5e5CQXgNKZj2LfBf2'
-	#构建鉴权对象
-	q = Auth(access_key, secret_key)
-	#要上传的空间
-	bucket_name = 'gparraycontroller'
-	#上传到七牛后保存的文件名
-	key = '1.' + str(time.time()) + '.jpg';
-	#生成上传 Token，可以指定过期时间等
-	token = q.upload_token(bucket_name, key, 3600)
-	#要上传文件的本地路径
-	localfile = './output/1.jpg'
-	ret, info = put_file(token, key, localfile)
-	print(info)
-	assert ret['key'] == key
-	assert ret['hash'] == etag(localfile)
-	return 'http://omm25myif.bkt.clouddn.com/{}'.format(key)
+	def _upload(id):
+		try:
+			from qiniu import Auth, put_file, etag, urlsafe_base64_encode
+			import qiniu.config
+			import time
+			access_key = '6GXfBrWJbYN3N2y0zuMX7rf7tmvoqWg5CFwMYMKh'
+			secret_key = 'Nk9DmZ95PRqqH59-2FH6__q5e5CQXgNKZj2LfBf2'
+			#构建鉴权对象
+			q = Auth(access_key, secret_key)
+			#要上传的空间
+			bucket_name = 'gparraycontroller'
+			#上传到七牛后保存的文件名
+			key = str(id) + '.' + str(time.time()) + '.jpg';
+			#生成上传 Token，可以指定过期时间等
+			token = q.upload_token(bucket_name, key, 3600)
+			#要上传文件的本地路径
+			localfile = './output/' + str(id) + '.jpg'
+			ret, info = put_file(token, key, localfile)
+			print(info)
+			assert ret['key'] == key
+			assert ret['hash'] == etag(localfile)
+			return 'http://omm25myif.bkt.clouddn.com/{}?imageView2/1/w/200/h/150/format/jpg/interlace/1/q/75|imageslim'.format(key)
+		except Exception as e:
+			return 'Error'
+	try:
+		ans = 'Upload Url:\n'
+		for i in device:
+			ans += _upload(i.id) + '\n'
+		return ans
+	except Exception as e:
+		return 'failed'
