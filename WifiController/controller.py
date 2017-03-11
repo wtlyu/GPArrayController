@@ -2,7 +2,7 @@
 # @Author: eastpiger
 # @Date:   2017-02-16 14:38:02
 # @Last Modified by:   eastpiger
-# @Last Modified time: 2017-03-11 08:19:40
+# @Last Modified time: 2017-03-11 08:45:34
 
 from urllib import request
 import json
@@ -176,7 +176,7 @@ def clear():
 def download():
 	for i in device:
 		try:
-			i.mode()
+			i.downloadLatest()
 		except Exception as e:
 			pass
 	# def _download(device):
