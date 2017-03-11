@@ -2,7 +2,7 @@
 # @Author: eastpiger
 # @Date:   2017-02-16 14:38:02
 # @Last Modified by:   eastpiger
-# @Last Modified time: 2017-03-11 08:45:34
+# @Last Modified time: 2017-03-11 09:27:07
 
 from urllib import request
 import json
@@ -207,7 +207,7 @@ def upload():
 			print(info)
 			assert ret['key'] == key
 			assert ret['hash'] == etag(localfile)
-			return 'http://omm25myif.bkt.clouddn.com/{}?imageView2/1/w/200/h/150/format/jpg/interlace/1/q/75|imageslim'.format(key)
+			return '<img src="http://omm25myif.bkt.clouddn.com/{}?imageView2/1/w/200/h/150/format/jpg/interlace/1/q/75|imageslim"><br/>'.format(key)
 		except Exception as e:
 			return 'Error'
 	try:
